@@ -175,6 +175,16 @@ func (msg *PackedForwardMessage) Chunk() (string, error) {
 	return chunk, err
 }
 
+func (msg *PackedForwardMessage) RemoveChunk() {
+	if msg.Options == nil {
+		return
+	}
+
+	if msg.Options.Chunk != "" {
+		msg.Options.Chunk = ""
+	}
+}
+
 //msgp:ignore GzipCompressor
 type GzipCompressor struct {
 	Buffer     *bytes.Buffer
